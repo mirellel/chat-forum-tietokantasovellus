@@ -7,7 +7,7 @@ app.secret_key = getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
-	retuapp = Flask(__name__)zrn render_template("index.html")
+	return render_template("index.html")
 
 @app.route("/login",methods=["POST"])
 def login():
