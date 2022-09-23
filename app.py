@@ -15,7 +15,7 @@ def login():
 	password = request.form["password"]
 	session["username"] = username
 	return redirect("/")
-app.route("/logout")
+@app.route("/logout")
 def logout():
 	del session["username"]
 	return redirect("/")
