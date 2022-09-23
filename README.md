@@ -1,4 +1,4 @@
-# Keskustelufoorumi
+# MiirisChat
 Sovelluksen avulla käyttäjät voivat keskustella kommentoimalla tietyn aiheen keskusteluketjuun. Eri aiheille on omat keskustelualueet. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
 
 Sovelluksen ominaisuudet
@@ -12,3 +12,5 @@ Sovelluksen ominaisuudet
 - Käyttäjä voi etsiä viestejä hakusanan avulla
 - Ylläpitäjän roolissa oleva käyttäjä voi poistaa minkä tahansa ketjun tai viestin
 - Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
+
+Sovellus on testattavissa [Herokussa](https://miirischat.herokuapp.com/)
