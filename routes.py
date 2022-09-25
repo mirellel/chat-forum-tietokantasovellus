@@ -27,6 +27,7 @@ def logout():
 def register():
     if request.method == "GET":
         return render_template("register.html")
+
     if request.method == "POST":
         username = request.form["username"]
         if len(username)<1 or len(username)>20:
@@ -40,7 +41,11 @@ def register():
 
         if password1 == "":
             return render_template("error.html", message="Salasana on tyhjä")
+
+        role = request.form["role"]
+        if role not in ("1", "2"):
+            return render_template("error.html", message="Tuntematon käyttäjärooli")
         
-        if not users.register(username, password1):
+        if not users.register(username, password1, role):
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
         return redirect("/")
