@@ -1,6 +1,8 @@
 # MiirisChat
 MiirisChatissa käyttäjät voivat keskustella eri aiheista toistensa kanssa. Luomalla tunnuksen sovellukseen, voit aloittaa oman keskustelun tai kommentoida muiden aloittamia ketjuja.
 
+Sovellus on testattavissa [Herokussa](https://miirischat.herokuapp.com/)
+
 ## Sovelluksen nykytilanne
 - Sovellukseen voi luoda tunnuksen
 - Käyttäjärooleja on kaksi: käyttäjä ja ylläpitäjä
