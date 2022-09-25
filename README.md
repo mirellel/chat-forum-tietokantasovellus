@@ -1,9 +1,13 @@
 # MiirisChat
-Sovelluksen avulla käyttäjät voivat keskustella kommentoimalla tietyn aiheen keskusteluketjuun. Eri aiheille on omat keskustelualueet. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
+MiirisChatissa käyttäjät voivat keskustella eri aiheista toistensa kanssa. Luomalla tunnuksen sovellukseen, voit aloittaa oman keskustelun tai kommentoida muiden aloittamia ketjuja.
 
-Sovelluksen ominaisuudet
-- Sovellukseen voi luoda käyttäjätunnuksen
+## Sovelluksen nykytilanne
+- Sovellukseen voi luoda tunnuksen
+- Käyttäjärooleja on kaksi: käyttäjä ja ylläpitäjä
 - Käyttäjä voi kirjautua sisään ja ulos
+
+
+## Tulevat ominaisuudet
 - Käyttäjä voi luoda uuden keskusteluketjun antamalla ketjun otsikon ja aloitusviestin sisällön
 - Käyttäjä voi osallistua keskutseluun kirjoittamalla viestin olemassa olevaan ketjuun
 - Sovelluksen etusivulla näkyy listaus olemassa olevista keskusteluaiheista
@@ -13,4 +17,4 @@ Sovelluksen ominaisuudet
 - Ylläpitäjän roolissa oleva käyttäjä voi poistaa minkä tahansa ketjun tai viestin
 - Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
 
-Sovellus on testattavissa [Herokussa](https://miirischat.herokuapp.com/)
+
