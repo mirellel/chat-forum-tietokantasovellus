@@ -3,6 +3,7 @@
 
 Virhe: {{ message }}
 <p>
-<a href="/">Palaa takaisin</a>
-
+<script>
+    document.write('<a href="'+ document.referrer +'">Palaa takaisin</a>')
+</script>
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<form action="/create" method="POST">
+    <p>Otsikko:<br>
+    <input type="text" name="title"></p>
+    <select name="topic">
+        <option value="food">Ruoka</option>
+        <option value="entertainment">Viihde</option>
+        <option value="random">Sekalaista</option>
+        <option value="school">Koulu</option>
+        <option value="relationships">Parisuhteet</option>
+        {% if session.role == "2" %}
+        <option value="secret">Salainen</option>
+        {% endif %}
+    </select>
+    <p>Aloituskommenttisi:</p>
+    <textarea 
+    id="comment" name="comment" rows="4" cols="50">
+    </textarea>
+        <br>
+    <input type="submit" value="Lähetä">
+    
+</form>
+
+{% endblock %}
