@@ -4,9 +4,20 @@
 <h2> Etusivu </h2>
 {% if session.username %}
 <p>Olet kirjautunut nimellä {{ session.username }}</p>
+    {% if session.user_role %}
+        {% if session.user_role == 2 %}
+            <p>Roolisi: ylläpitäjä</p>
+            {% endif %}
+        {% if session.user_role == 1 %}
+            <p>Roolisi: käyttäjä</p>
+            {% endif %}
+    {% endif %}
 <a href="/logout">Kirjaudu ulos</a>
+<br>
+<a href="/new">Uusi keskustelu</a>
 {% else %}
 <p><a href="/login">Kirjaudu sisään</a></p>
+<br>
 {% endif %}
 
 {% endblock %}
