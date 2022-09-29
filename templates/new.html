@@ -1,24 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<form action="/create" method="POST">
+<form action="/new" method="POST">
     <p>Otsikko:<br>
     <input type="text" name="title"></p>
+    <p>Aihe:
     <select name="topic">
-        <option value="food">Ruoka</option>
-        <option value="entertainment">Viihde</option>
-        <option value="random">Sekalaista</option>
-        <option value="school">Koulu</option>
-        <option value="relationships">Parisuhteet</option>
+        <option value=1>Ruoka</option>
+        <option value=2>Viihde</option>
+        <option value=3>Sekalaista</option>
+        <option value=4>Koulu</option>
+        <option value=5>Parisuhteet</option>
+        <option value=6>Kysymykset</option>
         {% if session.role == "2" %}
-        <option value="secret">Salainen</option>
+        <option value=7>Salainen</option>
         {% endif %}
     </select>
+    </p>
     <p>Aloituskommenttisi:</p>
     <textarea 
     id="comment" name="comment" rows="4" cols="50">
     </textarea>
-        <br>
+    <input type="hidden" name="user_id" value={{session.user_id}}>
+    <br>
     <input type="submit" value="Lähetä">
     
 </form>
