@@ -25,7 +25,7 @@
         <hr>
             {% for title in all_posts %}
                 {% if title[6] %}
-                <b style="color: fuchsia; font-size: 22px;">{{ title[1] }}</b>
+                <a href="/post/{{ title[0] }}" style="color:fuchsia; font-size:22px">{{ title[1] }}<a/>
                 <p2 style="color: white; font-size: 16px;">{{ title[3] }}</p2>
                 <br><br>
                 <b style="color: white;">{{ title[2] }}</b>
@@ -40,5 +40,5 @@
             {% endfor %}
 
     {% endif %}
-
+{% include "layout_kitty.html" %}
 {% endblock %}

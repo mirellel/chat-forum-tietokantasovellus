@@ -98,3 +98,9 @@ def delete_title():
         return render_template("error.html", message="Viestin postaminen epäonnistui")
 
     return redirect("/")
+
+@app.route("/post/<int:title_id>")
+def show_title(title_id):
+    info = posts.get_title_info(title_id)
+
+    return render_template("post.html", id=title_id, name=info[0], posted_by=info[1], content=info[2], posted_at=info[3])

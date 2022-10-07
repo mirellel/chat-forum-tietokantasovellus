@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 
-
+<h2 style="color:rgb(250, 104, 206)">{{ name }}</h2>
+<p style="color:rgb(255, 255, 255); font-size: small;">Keskustelun aloitti:{{ posted_by }}</p>
+<p2 style="color:rgb(255, 255, 255); font-size: small;">Keskustelu aloitettiin: {{ posted_at }}</p2>
+<br><br>
+<p3 style="color:rgb(250, 104, 206)">{{ content }}</p3>
+<br>
 
 {% endblock %}
