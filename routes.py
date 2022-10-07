@@ -6,7 +6,11 @@ import posts
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    all_posts = posts.get_all_posts()
+    if all_posts!=False:
+        return render_template("index.html", all_posts=all_posts)
+    else:
+        return render_template("error.html")
 
 
 @app.route("/login",methods=["GET", "POST"])
@@ -84,3 +88,13 @@ def created():
             return render_template("error.html", message="Postauksen luonti ei onnistunut")
 
         return redirect("/")
+
+@app.route("/delete_title", methods=["GET", "POST"])
+def delete_title():
+    title_id = request.form["title_id"]
+    try:
+        posts.delete_title(title_id)
+    except:
+        return render_template("error.html", message="Viestin postaminen epäonnistui")
+
+    return redirect("/")

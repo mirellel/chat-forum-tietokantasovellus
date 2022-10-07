@@ -19,5 +19,26 @@
 <p><a href="/login">Kirjaudu sisään</a></p>
 <br>
 {% endif %}
+<br><br><br>
+    {% if all_posts %}
+        <p>Viestit:</p>
+        <hr>
+            {% for title in all_posts %}
+                {% if title[6] %}
+                <b style="color: fuchsia; font-size: 22px;">{{ title[1] }}</b>
+                <p2 style="color: white; font-size: 16px;">{{ title[3] }}</p2>
+                <br><br>
+                <b style="color: white;">{{ title[2] }}</b>
+                <br><br>
+                    {% if session.user_role==2 or session.user_id==title[4] %}
+                        <form action="/delete_title" method="POST">
+                            <input type="hidden" name=title_id value="{{title[0]}}">
+                            <input style="font: size 10px;" type="submit" value="Poista viesti">
+                        </form>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+    {% endif %}
 
 {% endblock %}

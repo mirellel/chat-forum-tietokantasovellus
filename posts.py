@@ -19,3 +19,18 @@ def create_post(title, content, user_id, topic_id, visibility):
 
     return True
 
+def get_all_posts():
+    try:
+        sql = """SELECT id, title, content, posted_at, posted_by, topic_id, visibility FROM titles ORDER BY posted_at DESC"""
+        result = db.session.execute(sql)
+        message = result.fetchall()
+        return message
+    except:
+        return False
+
+def delete_title(title_id):
+    sql = """UPDATE titles SET visibility=FALSE WHERE id=:id"""
+    db.session.execute(sql, {"id":title_id})
+    db.session.commit()
+
+    return True
