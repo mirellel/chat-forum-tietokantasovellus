@@ -7,6 +7,7 @@
 <br><br>
 <p3 style="color:rgb(250, 104, 206)">{{ content }}</p3>
 <br><br><br>
+<hr>
 {% if post_comments %}
     <p style="color:fuchsia; font-size: medium;">Kommentit:</p>
     {% for comment in post_comments %}
@@ -19,6 +20,7 @@
                 <input style="font: size 10px;" type="submit" value="Poista kommentti">
             </form>
         {% endif %}
+        <hr>
         {% endif %}
     {%  endfor %}
 
@@ -27,6 +29,7 @@
 
 <br><br><br>
 {% if session.username %}
+<hr>
 <form action="/new_comment" method="POST">
     <p4 style="font-size: medium; color:fuchsia;">Kommentoi:</p4>
     <br>
