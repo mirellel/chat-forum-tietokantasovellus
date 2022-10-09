@@ -134,3 +134,16 @@ def delete_comment():
     except:
         return render_template("error.html", message="Kommentin postaminen epäonnistui")
     return redirect("/")
+
+
+@app.route("/topics", methods=["GET", "POST"])
+def show_topics():
+    topics = posts.get_topics()
+
+    return render_template("topics.html", topics=topics)
+
+@app.route("/topic/<int:topic_id>")
+def show_titles_by_topic(topic_id):
+    titles = posts.get_titles_by_topic(topic_id)
+
+    return render_template("topic.html", id=topic_id, titles=titles)

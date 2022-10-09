@@ -39,3 +39,14 @@ def delete_title(title_id):
     db.session.commit()
 
     return True
+
+def get_titles_by_topic(topic_id):
+    sql = """SELECT id, title, content, posted_at, posted_by, topic_id, visibility
+            FROM titles
+            WHERE topic_id=:topic_id"""
+    return db.session.execute(sql, {"topic_id": topic_id}).fetchall()
+
+def get_topics():
+    sql = """SELECT id, name FROM topics"""
+
+    return db.session.execute(sql).fetchall()

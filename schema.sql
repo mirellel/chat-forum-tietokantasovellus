@@ -16,7 +16,7 @@ CREATE TABLE titles (
     content TEXT,
     posted_at TIMESTAMP,
     posted_by INTEGER REFERENCES users,
-    topic_id INTEGER,
+    topic_id INTEGER REFERENCES topics,
     visibility BOOLEAN
 );
 
