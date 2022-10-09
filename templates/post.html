@@ -6,6 +6,37 @@
 <p2 style="color:rgb(255, 255, 255); font-size: small;">Keskustelu aloitettiin: {{ posted_at }}</p2>
 <br><br>
 <p3 style="color:rgb(250, 104, 206)">{{ content }}</p3>
-<br>
+<br><br><br>
+{% if post_comments %}
+    <p style="color:fuchsia; font-size: medium;">Kommentit:</p>
+    {% for comment in post_comments %}
+        {% if comment[4] %}
+        <p style="color: white; font-size: small;">{{ comment[2] }} @ {{ comment[3] }}: </p>
+        <p2 style="color:fuchsia">{{ comment[0] }}</p2>
+        {% if session.user_role==2 or session.username==comment[2] %}
+            <form action="/delete_comment" method="POST">
+                <input type="hidden" name=comment_id value="{{comment[5]}}">
+                <input style="font: size 10px;" type="submit" value="Poista kommentti">
+            </form>
+        {% endif %}
+        {% endif %}
+    {%  endfor %}
+
+{%  endif %}
+
+
+<br><br><br>
+{% if session.username %}
+<form action="/new_comment" method="POST">
+    <p4 style="font-size: medium; color:fuchsia;">Kommentoi:</p4>
+    <br>
+    <textarea id="comment" name="comment" rows="4" cols="50">
+    </textarea>
+    <br>
+    <input type="hidden" name="commentor" value="{{session.username}}">
+    <input type="hidden" name="title_id" value="{{id}}">
+    <input type="submit" value="Lähetä">
+{% endif %}
+</form>
 
 {% endblock %}

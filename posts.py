@@ -29,7 +29,8 @@ def get_all_posts():
         return False
 
 def get_title_info(title_id):
-    sql = """SELECT t.title, u.username, t.content, t.posted_at FROM titles t, users u WHERE t.id=:title_id AND t.posted_by=u.id"""
+    sql = """SELECT t.title, u.username, t.content, t.posted_at 
+            FROM titles t, users u WHERE t.id=:title_id AND t.posted_by=u.id"""
     return db.session.execute(sql, {"title_id": title_id}).fetchone()
 
 def delete_title(title_id):

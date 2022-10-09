@@ -3,6 +3,7 @@ from app import app
 from flask import render_template, request, redirect
 import users
 import posts
+import comments
 
 @app.route("/")
 def index():
@@ -102,5 +103,34 @@ def delete_title():
 @app.route("/post/<int:title_id>")
 def show_title(title_id):
     info = posts.get_title_info(title_id)
+    post_comments = comments.get_comments(title_id)
+    
+    
+    return render_template("post.html", id=title_id, name=info[0], posted_by=info[1], content=info[2], posted_at=info[3], post_comments=post_comments)
 
-    return render_template("post.html", id=title_id, name=info[0], posted_by=info[1], content=info[2], posted_at=info[3])
+@app.route("/new_comment", methods=["GET", "POST"])
+def comment():
+    if request.method == "GET":
+        return render_template("post/<int:title_id>")
+    if request.method == "POST":
+        comment = request.form["comment"]
+        commentor = request.form["commentor"]
+        post_id =  request.form["title_id"]
+
+        if comment == "" or  comment == "    ":
+            return render_template("error.html", message="Kommentti ei saa olla tyhjä!")
+        
+        if not comments.create_comment(comment, post_id, commentor, True):
+            return render_template("error.html", message="Kommentin luonti ei onnistunut")
+
+        return redirect("/post/"+post_id)
+
+@app.route("/delete_comment", methods=["GET", "POST"])
+def delete_comment():
+    comment_id = request.form["comment_id"]
+    try:
+        comments.delete_comment(comment_id)
+
+    except:
+        return render_template("error.html", message="Kommentin postaminen epäonnistui")
+    return redirect("/")
