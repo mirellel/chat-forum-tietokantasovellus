@@ -15,8 +15,8 @@ Sovellus on testattavissa [Herokussa](https://miirischat.herokuapp.com/)
 
 
 ## Tulevat ominaisuudet
-- Sovelluksen etusivulla näkyy listaus olemassa olevista keskusteluaiheista
-  - Jokaisessa aiheessa näkyy viestien määrä ja viimeisen viestin ajankohta
+- Sovelluksen etusivulla näkyy listaus keskusteluaiheista
+   - Käyttäjä voi halutessaan selata vain tietyn aiheen keskutseluja  
 - Käyttäjä voi etsiä viestejä hakusanan avulla
 - Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
 
