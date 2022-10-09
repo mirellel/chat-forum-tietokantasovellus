@@ -7,16 +7,17 @@ Sovellus on testattavissa [Herokussa](https://miirischat.herokuapp.com/)
 - Sovellukseen voi luoda tunnuksen
 - Käyttäjärooleja on kaksi: käyttäjä ja ylläpitäjä
 - Käyttäjä voi kirjautua sisään ja ulos
+- Kirjautunut käyttäjä voi luoda keskustelun
+   - keskustelulla tulee olla otsikko ja aloituskommentti
+- Kirjautunut käyttäjä voi kommentoida omia sekä muiden aloittamia keskusteluja
+- Käyttäjä voi poistaa omat kommenttinsa ja keskustelunsa
+- Ylläpitäjän roolissa oleva käyttäjä voi poistaa muiden kommentteja ja keskusteluja
 
 
 ## Tulevat ominaisuudet
-- Käyttäjä voi luoda uuden keskusteluketjun antamalla ketjun otsikon ja aloitusviestin sisällön
-- Käyttäjä voi osallistua keskutseluun kirjoittamalla viestin olemassa olevaan ketjuun
-- Sovelluksen etusivulla näkyy listaus olemassa olevista keskusteluaiheista
-  - Jokaisessa aiheessa näkyy viestien määrä ja viimeisen viestin ajankohta
-- Käyttäjä voi muokata luomansa aiheen otsikkoa sekä lähettämiään viestejä sekä poistaa niitä
+- Sovelluksen etusivulla näkyy listaus keskusteluaiheista
+   - Käyttäjä voi halutessaan selata vain tietyn aiheen keskutseluja  
 - Käyttäjä voi etsiä viestejä hakusanan avulla
-- Ylläpitäjän roolissa oleva käyttäjä voi poistaa minkä tahansa ketjun tai viestin
 - Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
 
 
