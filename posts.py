@@ -11,7 +11,7 @@ def create_post(title, content, user_id, topic_id, visibility):
         sql = """INSERT INTO titles (title, content, posted_at, posted_by, topic_id, visibility) 
                 VALUES (:title, :content, :posted_at, :posted_by, :topic_id, :visibility)"""
         db.session.execute(sql, {"title":title, "content":content, 
-                                "posted_at":time, "posted_by":user_id, "topic_id":topic_id, 
+                                "posted_at":'2001-07-04*13:23:55', "posted_by":user_id, "topic_id":topic_id, 
                                 "visibility":visibility})
         db.session.commit()
     except:
