@@ -24,7 +24,7 @@ CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
     comment TEXT,
     title_id INTEGER REFERENCES titles,
-    commentor TEXT
+    commentor TEXT,
     sent_at TIMESTAMP,
     visibility BOOLEAN
 );
