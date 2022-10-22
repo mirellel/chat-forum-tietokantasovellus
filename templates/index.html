@@ -12,6 +12,13 @@
             <p>Roolisi: käyttäjä</p>
             {% endif %}
     {% endif %}
+
+    <form action="/account" method="POST">
+      <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+      <input type="hidden" name="user_id" value="{{ session.user_id }}">
+      <input type="hidden" name="username" value="{{ session.username }}">
+      <input type="submit" value="Tilini">
+    </form>
 <a href="/logout">Kirjaudu ulos</a>
 <br>
 <a href="/new">Uusi keskustelu</a>

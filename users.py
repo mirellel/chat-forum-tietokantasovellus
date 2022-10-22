@@ -41,3 +41,25 @@ def check_csrf():
 
 def user_id():
     return session.get("user_id", 0)
+
+def posts_made_by_user(user_id):
+    try:
+        sql= """
+            SELECT COUNT(posted_by)
+            FROM titles
+            WHERE posted_by=:posted_by"""
+        num_of_posts=db.session.execute(sql, {"posted_by": user_id}).fetchone()
+        return num_of_posts
+    except:
+        return False
+
+def comments_made_by_user(username):
+    try:
+        sql= """
+            SELECT COUNT(commentor)
+            FROM comments
+            WHERE commentor=:commentor"""
+        num_of_comments=db.session.execute(sql, {"commentor": username}).fetchone()
+        return num_of_comments
+    except:
+        return False

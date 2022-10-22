@@ -65,6 +65,18 @@ def register():
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
         return redirect("/")
 
+@app.route("/account", methods=["GET","POST"])
+def access_account():
+    users.check_csrf()
+    user_id = request.form["user_id"]
+    username = request.form["username"]
+    if request.method == "GET":
+        return render_template("account.html")
+    if request.method =="POST":
+        num_of_posts = users.posts_made_by_user(user_id)
+        num_of_comments = users.comments_made_by_user(username)
+        return render_template("account.html", num_of_posts=num_of_posts, num_of_comments=num_of_comments)
+
 @app.route("/create", methods=["GET", "POST"])
 def new_title():
     if request.method =="GET":

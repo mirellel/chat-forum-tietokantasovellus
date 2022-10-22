@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Hei, {{session.username}}!</h2>
+<br><br>
+Olet aloittanut {{ num_of_posts[0] }} keskustelua ja lähettänyt {{ num_of_comments[0] }} kommenttia.
+<br>
+
+<a href="/">Palaa etusivulle</a>
+{% endblock %}
