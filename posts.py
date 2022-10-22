@@ -60,3 +60,10 @@ def has_user_liked_post(title_id, liker_id):
         return True
     else:
         return False
+
+def restore_deleted_post(title_id):
+    sql = """UPDATE titles SET visibility=TRUE WHERE id=:id"""
+    db.session.execute(sql, {"id":title_id})
+    db.session.commit()
+
+    return True

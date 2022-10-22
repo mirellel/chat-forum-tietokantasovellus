@@ -75,7 +75,8 @@ def access_account():
     if request.method =="POST":
         num_of_posts = users.posts_made_by_user(user_id)
         num_of_comments = users.comments_made_by_user(username)
-        return render_template("account.html", num_of_posts=num_of_posts, num_of_comments=num_of_comments)
+        deleted_posts = users.get_users_deleted_posts(user_id)
+        return render_template("account.html", num_of_posts=num_of_posts, num_of_comments=num_of_comments, deleted_posts=deleted_posts)
 
 @app.route("/create", methods=["GET", "POST"])
 def new_title():
@@ -112,6 +113,15 @@ def delete_title():
     except:
         return render_template("error.html", message="Viestin postaminen epäonnistui")
 
+    return redirect("/")
+
+@app.route("/restore_post", methods=["GET", "POST"])
+def restore_post():
+    title_id = int(request.form["title_id"])
+    try:
+        posts.restore_deleted_post(title_id)
+    except:
+        return render_template("error.html", message="Viestin palauttaminen epäonnistui")
     return redirect("/")
 
 @app.route("/post/<int:title_id>")
