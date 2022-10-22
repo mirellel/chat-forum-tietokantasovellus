@@ -30,6 +30,29 @@ def get_comments(title_id):
     except:
         return False
 
+def get_number_of_comments(title_id):
+    try:
+        sql = """
+            SELECT COUNT(comment)
+            FROM comments
+            WHERE title_id=:title_id AND visibility=TRUE"""
+        number_of_comments = db.session.execute(sql,{"title_id": title_id}).fetchall()
+        return number_of_comments
+    except:
+        return False
+
+def get_all_comments():
+    try:
+        sql = """
+            SELECT title_id, COUNT(title_id)
+            FROM comments
+            WHERE visibility=TRUE
+            GROUP BY title_id"""
+        num_of_comments_per_post = db.session.execute(sql).fetchall()
+        return num_of_comments_per_post
+    except:
+        return False
+
 
 def delete_comment(comment_id):
     sql = """UPDATE comments SET visibility=FALSE WHERE id=:id"""

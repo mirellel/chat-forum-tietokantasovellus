@@ -16,6 +16,7 @@
 </form>
 {% endif %}
 
+<p>Kommenttien määrä: {{ num_of_comments[0] }}</p>
 {% if post_comments %}
   <p style="color:rgb(95, 23, 73); font-size: medium;">Kommentit:</p>
     {% for comment in post_comments %}

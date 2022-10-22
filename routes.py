@@ -10,8 +10,11 @@ import topics
 def index():
     all_posts = posts.get_all_posts()
     num_of_posts = posts.get_number_of_posts()
+    num_of_comments_per_post = comments.get_all_comments()
     if all_posts!=False:
-        return render_template("index.html", all_posts=all_posts, num_of_posts=num_of_posts[0])
+        return render_template("index.html", all_posts=all_posts, 
+        num_of_posts=num_of_posts[0],
+        num_of_comments_per_post=num_of_comments_per_post)
     else:
         return render_template("error.html")
 
@@ -131,10 +134,14 @@ def restore_post():
 def show_title(title_id):
     info = posts.get_title_info(title_id)
     post_comments = comments.get_comments(title_id)
+    num_of_comments = comments.get_number_of_comments(title_id)
     
-    
-    return render_template("post.html", id=title_id, name=info[0], posted_by=info[1], content=info[2], posted_at=info[3], post_comments=post_comments,
-    num_of_likes = info[4])
+    return render_template("post.html", id=title_id, 
+    name=info[0], posted_by=info[1], 
+    content=info[2], posted_at=info[3], 
+    post_comments=post_comments,
+    num_of_likes = info[4],
+    num_of_comments=num_of_comments[0])
 
 @app.route("/new_comment", methods=["GET", "POST"])
 def comment():
@@ -156,12 +163,14 @@ def comment():
 @app.route("/delete_comment", methods=["GET", "POST"])
 def delete_comment():
     comment_id = request.form["comment_id"]
+    post_id =  request.form["title_id"]
     try:
         comments.delete_comment(comment_id)
 
     except:
         return render_template("error.html", message="Kommentin postaminen epäonnistui")
-    return redirect("/")
+    return redirect("/post/"+post_id)
+
 
 @app.route("/restore_comment", methods=["GET", "POST"])
 def restore_comment():
