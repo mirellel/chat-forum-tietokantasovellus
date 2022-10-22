@@ -4,6 +4,7 @@ from flask import render_template, request, redirect
 import users
 import posts
 import comments
+import topics
 
 @app.route("/")
 def index():
@@ -74,16 +75,17 @@ def new_title():
 
 @app.route("/new", methods=["GET", "POST"])
 def created():
+    all_topics = topics.get_topics()
     if request.method == "GET":
-        return render_template("new.html")
+        return render_template("new.html", all_topics=all_topics)
     if request.method == "POST":
         title = request.form["title"]
         comment = request.form["comment"]
         id=request.form["user_id"]
         topic=request.form["topic"]
-        if title == "":
+        if title == "" or title.isspace():
             return render_template("error.html", message="Otsikko ei saa olla tyhjä!")
-        if comment == "" or  comment == "    ":
+        if comment == "" or  comment.isspace():
             return render_template("error.html", message="Aloituskommentti ei saa olla tyhjä!")
         if not posts.create_post(title, comment, id, topic, True):
             return render_template("error.html", message="Postauksen luonti ei onnistunut")
@@ -147,3 +149,18 @@ def show_titles_by_topic(topic_id):
     titles = posts.get_titles_by_topic(topic_id)
 
     return render_template("topic.html", id=topic_id, titles=titles)
+
+@app.route("/add_topic", methods=["GET", "POST"])
+def add_topic():
+    if request.method =="GET":
+        return render_template("/topics")
+
+    if request.method == "POST":
+        name = request.form["new_topic"]
+        if name == "":
+            return render_template("error.html", message="Aihe ei saa olla tyhjä")
+
+        if not topics.create_topic(name):
+            return render_template("error.html", message="Aiheen luominen ei onnistunut")
+        
+        return redirect("/topics")

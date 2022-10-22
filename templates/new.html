@@ -2,29 +2,23 @@
 {% block content %}
 
 <form action="/new" method="POST">
-    <p>Otsikko:<br>
-    <input type="text" name="title"></p>
-    <p>Aihe:
-    <select name="topic">
-        <option value=1>Ruoka</option>
-        <option value=2>Viihde</option>
-        <option value=3>Sekalaista</option>
-        <option value=4>Koulu</option>
-        <option value=5>Parisuhteet</option>
-        <option value=6>Kysymykset</option>
-        {% if session.role == "2" %}
-        <option value=7>Salainen</option>
-        {% endif %}
-    </select>
-    </p>
-    <p>Aloituskommenttisi:</p>
-    <textarea 
-    id="comment" name="comment" rows="4" cols="50">
+  <p>Otsikko:<br>
+  <input type="text" id="title" name="title"></p>
+  <p>Aihe:
+  <select name="topic">
+    {% for topic in all_topics %}
+      <option value={{topic[0]}}>{{topic[1]}}</option>
+    {% endfor %}
+  </select>
+  </p>
+  <p>Aloituskommenttisi:</p>
+    <textarea id="comment" name="comment" rows="4" cols="50">
     </textarea>
-    <input type="hidden" name="user_id" value={{session.user_id}}>
-    <br>
-    <input type="submit" value="Lähetä">
-    
+  <input type="hidden" id="user_id "name="user_id" value={{session.user_id}}>
+  <br>
+  <input type="submit" value="Lähetä">
 </form>
+
+<a href="/">Palaa etusivulle</a>
 
 {% endblock %}
