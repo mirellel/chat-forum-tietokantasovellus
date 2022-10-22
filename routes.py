@@ -94,11 +94,11 @@ def new_title():
 
 @app.route("/new", methods=["GET", "POST"])
 def created():
-    users.check_csrf()
     all_topics = topics.get_topics()
     if request.method == "GET":
         return render_template("new.html", all_topics=all_topics)
     if request.method == "POST":
+        users.check_csrf()
         title = request.form["title"]
         comment = request.form["comment"]
         id=request.form["user_id"]
@@ -110,7 +110,7 @@ def created():
         if not posts.create_post(title, comment, id, topic, True):
             return render_template("error.html", message="Postauksen luonti ei onnistunut")
 
-        return redirect("/")
+        return redirect("/create")
 
 @app.route("/delete_title", methods=["GET", "POST"])
 def delete_title():
