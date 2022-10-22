@@ -18,5 +18,19 @@ Olet aloittanut {{ num_of_posts[0] }} keskustelua ja lähettänyt {{ num_of_comm
   {% endfor %}
 {% endif %}
 <br>
+
+{% if deleted_comments %}
+  <h3>Poistetut kommentit:</h3>
+  {% for comment in deleted_comments %}
+    <p>Kommentti: {{comment[1]}}</p>
+    <p>Lähetetty: {{comment[2]}}</p>
+    <form action="/restore_comment" method="POST">
+      <input type="hidden" name="comment_id" value="{{comment[0]}}">
+      <input type="submit" value="Palauta commentti">
+    </form>
+    <hr>
+  {% endfor %}
+{% endif %}
+<br>
 <a href="/">Palaa etusivulle</a>
 {% endblock %}

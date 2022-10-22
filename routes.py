@@ -76,7 +76,9 @@ def access_account():
         num_of_posts = users.posts_made_by_user(user_id)
         num_of_comments = users.comments_made_by_user(username)
         deleted_posts = users.get_users_deleted_posts(user_id)
-        return render_template("account.html", num_of_posts=num_of_posts, num_of_comments=num_of_comments, deleted_posts=deleted_posts)
+        deleted_comments = users.get_users_deleted_comments(username)
+        return render_template("account.html", num_of_posts=num_of_posts, num_of_comments=num_of_comments, 
+        deleted_posts=deleted_posts, deleted_comments=deleted_comments)
 
 @app.route("/create", methods=["GET", "POST"])
 def new_title():
@@ -160,12 +162,21 @@ def delete_comment():
         return render_template("error.html", message="Kommentin postaminen epäonnistui")
     return redirect("/")
 
+@app.route("/restore_comment", methods=["GET", "POST"])
+def restore_comment():
+    comment_id = request.form["comment_id"]
+    try:
+        comments.restore_comment(comment_id)
+    except:
+        return render_template("error.html", message="Kommentin palauttaminen epäonnistui")
+    return redirect("/")
+
 
 @app.route("/topics", methods=["GET", "POST"])
 def show_topics():
-    topics = posts.get_topics()
+    all_topics = topics.get_topics()
 
-    return render_template("topics.html", topics=topics)
+    return render_template("topics.html", topics=all_topics)
 
 @app.route("/topic/<int:topic_id>")
 def show_titles_by_topic(topic_id):

@@ -75,3 +75,14 @@ def get_users_deleted_posts(user_id):
         return deleted_posts
     except:
         return False
+
+def get_users_deleted_comments(username):
+    try:
+        sql = """
+            SELECT id, comment, TO_CHAR(sent_at, \'HH24:MI, Mon dd yyyy\')
+            FROM comments
+            WHERE commentor=:commentor AND visibility=FALSE"""
+        deleted_comments = db.session.execute(sql, {"commentor": username}).fetchall()
+        return deleted_comments
+    except:
+        return False

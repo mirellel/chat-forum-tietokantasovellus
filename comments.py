@@ -22,7 +22,7 @@ def create_comment(comment, title_id, username, visibility):
 def get_comments(title_id):
     try:
         sql = """
-            SELECT comment, title_id, commentor, TO_CHAR(sent_at, \'HH24:MI, Mon dd yyyy\') visibility, id
+            SELECT comment, title_id, commentor, TO_CHAR(sent_at, \'HH24:MI, Mon dd yyyy\'), visibility, id
             FROM comments
             WHERE title_id=:title_id"""
         result=db.session.execute(sql, {"title_id": title_id}).fetchall()
@@ -33,6 +33,13 @@ def get_comments(title_id):
 
 def delete_comment(comment_id):
     sql = """UPDATE comments SET visibility=FALSE WHERE id=:id"""
+    db.session.execute(sql, {"id":comment_id})
+    db.session.commit()
+
+    return True
+
+def restore_comment(comment_id):
+    sql = """UPDATE comments SET visibility=TRUE WHERE id=:id"""
     db.session.execute(sql, {"id":comment_id})
     db.session.commit()
 
