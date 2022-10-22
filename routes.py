@@ -9,8 +9,9 @@ import topics
 @app.route("/")
 def index():
     all_posts = posts.get_all_posts()
+    num_of_posts = posts.get_number_of_posts()
     if all_posts!=False:
-        return render_template("index.html", all_posts=all_posts)
+        return render_template("index.html", all_posts=all_posts, num_of_posts=num_of_posts[0])
     else:
         return render_template("error.html")
 

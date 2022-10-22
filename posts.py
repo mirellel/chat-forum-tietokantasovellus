@@ -31,6 +31,18 @@ def get_title_info(title_id):
             FROM titles t, users u WHERE t.id=:title_id AND t.posted_by=u.id"""
     return db.session.execute(sql, {"title_id": title_id}).fetchone()
 
+def get_number_of_posts():
+    try:
+        sql = """
+            SELECT COUNT(id)
+            FROM titles
+            WHERE visibility=TRUE
+            """
+        number_of_posts = db.session.execute(sql).fetchall()
+        return number_of_posts
+    except:
+        return False
+
 def delete_title(title_id):
     sql = """UPDATE titles SET visibility=FALSE WHERE id=:id"""
     db.session.execute(sql, {"id":title_id})
