@@ -4,16 +4,13 @@ from db import db
 from flask import abort, request, session
 import users
 import posts
-from datetime import datetime
 
 def create_comment(comment, title_id, username, visibility):
-    now = datetime.now()
-    time=now.strftime("%d/%m/%Y %H:%M")
     try:
-        sql = """INSERT INTO comments (comment, title_id, commentor, sent_at, visibility)
-                VALUES (:comment, :title_id, :commentor, :sent_at, :visibility)"""
+        sql = """INSERT INTO comments (comment, title_id, commentor, visibility)
+                VALUES (:comment, :title_id, :commentor, :visibility)"""
         db.session.execute(sql, {"comment":comment, "title_id":title_id,
-                            "commentor":username, "sent_at":time, "visibility":visibility})
+                            "commentor":username, "visibility":visibility})
         db.session.commit()
 
     
@@ -25,7 +22,7 @@ def create_comment(comment, title_id, username, visibility):
 def get_comments(title_id):
     try:
         sql = """
-            SELECT comment, title_id, commentor, sent_at, visibility, id
+            SELECT comment, title_id, commentor, TO_CHAR(sent_at, \'HH24:MI, Mon dd yyyy\') visibility, id
             FROM comments
             WHERE title_id=:title_id"""
         result=db.session.execute(sql, {"title_id": title_id}).fetchall()

@@ -14,7 +14,7 @@ CREATE TABLE titles (
     id SERIAL PRIMARY KEY,
     title TEXT,
     content TEXT,
-    posted_at TIMESTAMP,
+    posted_at TIMESTAMPTZ DEFAULT Now(),
     posted_by INTEGER REFERENCES users,
     topic_id INTEGER REFERENCES topics,
     visibility BOOLEAN
@@ -25,6 +25,6 @@ CREATE TABLE comments (
     comment TEXT,
     title_id INTEGER REFERENCES titles,
     commentor TEXT,
-    sent_at TIMESTAMP,
+    sent_at TIMESTAMPTZ DEFAULT Now(),
     visibility BOOLEAN
 );
