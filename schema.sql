@@ -28,3 +28,9 @@ CREATE TABLE comments (
     sent_at TIMESTAMPTZ DEFAULT Now(),
     visibility BOOLEAN
 );
+
+CREATE TABLE likes(
+    id SERIAL PRIMARY KEY,
+    liker_id INTEGER REFERENCES users,
+    title_id INTEGER REFERENCES titles
+);
