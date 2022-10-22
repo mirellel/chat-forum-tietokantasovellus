@@ -26,7 +26,8 @@ def get_all_posts():
         return False
 
 def get_title_info(title_id):
-    sql = """SELECT t.title, u.username, t.content, TO_CHAR(t.posted_at, \'HH24:MI, Mon dd yyyy\') 
+    sql_likes = """(SELECT COUNT(l.id) FROM likes l WHERE t.id = l.title_id)"""
+    sql = f"""SELECT t.title, u.username, t.content, TO_CHAR(t.posted_at, \'HH24:MI, Mon dd yyyy\'), {sql_likes} 
             FROM titles t, users u WHERE t.id=:title_id AND t.posted_by=u.id"""
     return db.session.execute(sql, {"title_id": title_id}).fetchone()
 
@@ -43,7 +44,19 @@ def get_titles_by_topic(topic_id):
             WHERE topic_id=:topic_id"""
     return db.session.execute(sql, {"topic_id": topic_id}).fetchall()
 
-def get_topics():
-    sql = """SELECT id, name FROM topics"""
+def like_post(title_id, liker_id):
+    sql = "INSERT INTO likes (title_id, liker_id) VALUES (:title_id, :liker_id)"
+    db.session.execute(
+        sql, {"title_id": title_id, "liker_id": liker_id})
+    db.session.commit()
 
-    return db.session.execute(sql).fetchall()
+
+def has_user_liked_post(title_id, liker_id):
+    sql = "SELECT * FROM likes WHERE title_id =:title_id AND liker_id=:liker_id"
+    message = db.session.execute(
+        sql, {"title_id": title_id, "liker_id": liker_id}).fetchall()
+
+    if len(message) == 0:
+        return True
+    else:
+        return False

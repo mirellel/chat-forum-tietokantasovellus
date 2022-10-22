@@ -108,7 +108,8 @@ def show_title(title_id):
     post_comments = comments.get_comments(title_id)
     
     
-    return render_template("post.html", id=title_id, name=info[0], posted_by=info[1], content=info[2], posted_at=info[3], post_comments=post_comments)
+    return render_template("post.html", id=title_id, name=info[0], posted_by=info[1], content=info[2], posted_at=info[3], post_comments=post_comments,
+    num_of_likes = info[4])
 
 @app.route("/new_comment", methods=["GET", "POST"])
 def comment():
@@ -164,3 +165,16 @@ def add_topic():
             return render_template("error.html", message="Aiheen luominen ei onnistunut")
         
         return redirect("/topics")
+
+@app.post("/like_message")
+def like_title():
+
+    title_id = request.form["title_id"]
+
+    if users.user_id()>0:
+        liker_id = users.user_id()
+        if not posts.has_user_liked_post(title_id, liker_id):
+            return render_template("error.html", message="Et voi tykätä samasta viestistä kahdesti")
+        else:
+            posts.like_post(title_id, liker_id)
+            return redirect(f"/post/{title_id}")
