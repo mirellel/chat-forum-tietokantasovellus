@@ -20,8 +20,8 @@ def get_all_posts():
     try:
         sql = """SELECT id, title, content, TO_CHAR(posted_at, \'HH24:MI, Mon dd yyyy\'), posted_by, topic_id, visibility FROM titles ORDER BY posted_at DESC"""
         result = db.session.execute(sql)
-        message = result.fetchall()
-        return message
+        all_posts = result.fetchall()
+        return all_posts
     except:
         return False
 
@@ -32,15 +32,15 @@ def get_title_info(title_id):
     return db.session.execute(sql, {"title_id": title_id}).fetchone()
 
 
-def get_number_of_posts():
+def get_post_count():
     try:
         sql = """
             SELECT COUNT(id)
             FROM titles
             WHERE visibility=TRUE
             """
-        number_of_posts = db.session.execute(sql).fetchall()
-        return number_of_posts
+        post_count = db.session.execute(sql).fetchall()
+        return post_count
     except:
         return False
 
@@ -74,12 +74,12 @@ def has_user_liked_post(title_id, liker_id):
     else:
         return False
 
-def get_all_likes():
+def get_like_count():
     sql = """SELECT title_id, COUNT(title_id)
             FROM likes
             GROUP BY title_id"""
-    num_of_likes_per_post = db.session.execute(sql).fetchall()
-    return num_of_likes_per_post
+    like_count = db.session.execute(sql).fetchall()
+    return like_count
 
 
 def restore_deleted_post(title_id):

@@ -41,15 +41,15 @@ def get_number_of_comments(title_id):
     except:
         return False
 
-def get_all_comments():
+def get_comment_count():
     try:
         sql = """
             SELECT title_id, COUNT(title_id)
             FROM comments
             WHERE visibility=TRUE
             GROUP BY title_id"""
-        num_of_comments_per_post = db.session.execute(sql).fetchall()
-        return num_of_comments_per_post
+        comment_count = db.session.execute(sql).fetchall()
+        return comment_count
     except:
         return False
 

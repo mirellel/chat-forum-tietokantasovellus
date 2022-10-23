@@ -29,7 +29,7 @@
 
 <a href="/topics">Selaa aiheita</a>
 <br>
-Viestien määrä: {{num_of_posts[0]}}
+Viestien määrä: {{post_count[0]}}
   {% if all_posts %}
     <p>Viestit:</p>
       <hr>
@@ -39,12 +39,12 @@ Viestien määrä: {{num_of_posts[0]}}
           <p2 style="color: rgb(95, 23, 73); font-size: 16px;">{{ title[3] }}</p2>
           <br><br>
           <b style="color: rgb(95, 23, 73); font-size: medium;">{{ title[2] }}</b>
-          {% for comments in num_of_comments_per_post %}
+          {% for comments in comment_count %}
             {% if comments[0] == title[0] %}
               <p>Kommentteja:{{ comments[1] }}</p>
             {% endif %}
           {% endfor %}
-          {% for likes in num_of_likes_per_post %}
+          {% for likes in like_count %}
             {% if likes[0] == title[0] %}
               <p>Tykkäykset:{{ likes[1] }}</p>
             {% endif %}

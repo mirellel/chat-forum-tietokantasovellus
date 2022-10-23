@@ -8,14 +8,14 @@ import topics
 @app.route("/")
 def index():
     all_posts = posts.get_all_posts()
-    num_of_posts = posts.get_number_of_posts()
-    num_of_comments_per_post = comments.get_all_comments()
-    num_of_likes_per_post = posts.get_all_likes()
+    post_count = posts.get_post_count()
+    comment_count = comments.get_comment_count()
+    like_count = posts.get_like_count()
     if all_posts!=False:
         return render_template("index.html", all_posts=all_posts, 
-        num_of_posts=num_of_posts[0],
-        num_of_comments_per_post=num_of_comments_per_post,
-        num_of_likes_per_post=num_of_likes_per_post)
+        post_count=post_count[0],
+        comment_count=comment_count,
+        like_count=like_count)
     else:
         return render_template("error.html")
 
