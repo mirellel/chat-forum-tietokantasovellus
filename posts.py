@@ -18,7 +18,9 @@ def create_post(title, content, user_id, topic_id, visibility):
 
 def get_all_posts():
     try:
-        sql = """SELECT id, title, content, TO_CHAR(posted_at, \'HH24:MI, Mon dd yyyy\'), posted_by, topic_id, visibility FROM titles ORDER BY posted_at DESC"""
+        sql = """SELECT id, title, content, TO_CHAR(posted_at, \'HH24:MI, Mon dd yyyy\'), posted_by, topic_id, visibility 
+                 FROM titles 
+                 ORDER BY posted_at DESC"""
         result = db.session.execute(sql)
         all_posts = result.fetchall()
         return all_posts
@@ -65,7 +67,9 @@ def like_post(title_id, liker_id):
 
 
 def has_user_liked_post(title_id, liker_id):
-    sql = "SELECT * FROM likes WHERE title_id =:title_id AND liker_id=:liker_id"
+    sql = "SELECT id, liker_id, title_id 
+           FROM likes 
+           WHERE title_id =:title_id AND liker_id=:liker_id"
     message = db.session.execute(
         sql, {"title_id": title_id, "liker_id": liker_id}).fetchall()
 
