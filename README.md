@@ -3,21 +3,20 @@ MiirisChatissa käyttäjät voivat keskustella eri aiheista toistensa kanssa. Lu
 
 Sovellus on testattavissa [Herokussa](https://miirischat.herokuapp.com/)
 
-## Sovelluksen nykytilanne
+## Sovelluksen toiminnallisuudet
 - Sovellukseen voi luoda tunnuksen
-- Käyttäjärooleja on kaksi: käyttäjä ja ylläpitäjä
+  - Käyttäjärooleja on kaksi: käyttäjä ja ylläpitäjä
 - Käyttäjä voi kirjautua sisään ja ulos
-- Kirjautunut käyttäjä voi luoda keskustelun
+- Kirjautunut käyttäjä voi luoda keskustelun Uusi keskustelu -linkistä
    - keskustelulla tulee olla otsikko, aihe ja aloituskommentti
+- Ylläpitäjä voi luoda uusia aihealueita
 - Sovelluksen etusivulla näkyy kaikki luodut keskustelut
    - Yksittäisen aiheen keskusteluja voi etsiä "Selaa aiheita" linkin takaa
 - Kirjautunut käyttäjä voi kommentoida omia sekä muiden aloittamia keskusteluja
 - Käyttäjä voi poistaa omat kommenttinsa ja keskustelunsa
+- Käyttäjä voi nähdä Tilini-sivulta kuinka monta viestiä ja kommenttia on lähtettänyt sekä palauttaa poistettuja kommenttejaan
 - Ylläpitäjän roolissa oleva käyttäjä voi poistaa muiden kommentteja ja keskusteluja
+- Käyttäjät voivat antaa tykkäyksen keskustelulle
 
-
-## Tulevat ominaisuudet
-- Käyttäjä voi etsiä viestejä hakusanan avulla
-- Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
 
 
