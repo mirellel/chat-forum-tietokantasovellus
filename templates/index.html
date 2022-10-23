@@ -19,17 +19,16 @@
   <input type="submit" value="Tilini">
 </form>
     <a href="/logout">Kirjaudu ulos</a>
-<br>
+<br><br>
   <a href="/new">Uusi keskustelu</a>
 {% else %}
   <p><a href="/login">Kirjaudu sisään</a></p>
 <br>
 {% endif %}
-<br>
-
+<br><br>
 
 <a href="/topics">Selaa aiheita</a>
-<br><br><br>
+<br>
 Viestien määrä: {{num_of_posts[0]}}
   {% if all_posts %}
     <p>Viestit:</p>
