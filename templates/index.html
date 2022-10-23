@@ -2,7 +2,6 @@
 {% block content %}
 
 <h2> Etusivu </h2>
-
 {% if session.username %}
 <p>Olet kirjautunut nimellä {{ session.username }}</p>
   {% if session.user_role %}
@@ -28,8 +27,8 @@
 {% endif %}
 <br>
 
-<a href="/topics">Selaa aiheita</a>
 
+<a href="/topics">Selaa aiheita</a>
 <br><br><br>
 Viestien määrä: {{num_of_posts[0]}}
   {% if all_posts %}
@@ -44,6 +43,11 @@ Viestien määrä: {{num_of_posts[0]}}
           {% for comments in num_of_comments_per_post %}
             {% if comments[0] == title[0] %}
               <p>Kommentteja:{{ comments[1] }}</p>
+            {% endif %}
+          {% endfor %}
+          {% for likes in num_of_likes_per_post %}
+            {% if likes[0] == title[0] %}
+              <p>Tykkäykset:{{ likes[1] }}</p>
             {% endif %}
           {% endfor %}
           <br>

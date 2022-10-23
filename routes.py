@@ -1,4 +1,3 @@
-from crypt import methods
 from app import app
 from flask import render_template, request, redirect
 import users
@@ -11,10 +10,12 @@ def index():
     all_posts = posts.get_all_posts()
     num_of_posts = posts.get_number_of_posts()
     num_of_comments_per_post = comments.get_all_comments()
+    num_of_likes_per_post = posts.get_all_likes()
     if all_posts!=False:
         return render_template("index.html", all_posts=all_posts, 
         num_of_posts=num_of_posts[0],
-        num_of_comments_per_post=num_of_comments_per_post)
+        num_of_comments_per_post=num_of_comments_per_post,
+        num_of_likes_per_post=num_of_likes_per_post)
     else:
         return render_template("error.html")
 

@@ -31,6 +31,7 @@ def get_title_info(title_id):
             FROM titles t, users u WHERE t.id=:title_id AND t.posted_by=u.id"""
     return db.session.execute(sql, {"title_id": title_id}).fetchone()
 
+
 def get_number_of_posts():
     try:
         sql = """
@@ -72,6 +73,14 @@ def has_user_liked_post(title_id, liker_id):
         return True
     else:
         return False
+
+def get_all_likes():
+    sql = """SELECT title_id, COUNT(title_id)
+            FROM likes
+            GROUP BY title_id"""
+    num_of_likes_per_post = db.session.execute(sql).fetchall()
+    return num_of_likes_per_post
+
 
 def restore_deleted_post(title_id):
     sql = """UPDATE titles SET visibility=TRUE WHERE id=:id"""
